@@ -12,7 +12,7 @@
 // Represents a node in a hash table
 typedef struct node
 {
-    char word[LENGTH + 1]; // it's length + 1 because of the null terminating character at the end of each string; this is a STATIC ARRAY
+    char word[LENGTH + 1]; // bc of the null terminating character at the end of each string
     struct node *next;
 }
 node;
@@ -29,7 +29,6 @@ node *table[N]; // this is a STATIC ARRAY
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
-    // TODO
     unsigned int code = hash(word);
     node *temp = table[code];
     if (temp != NULL)
@@ -64,7 +63,7 @@ bool check(const char *word)
 unsigned int hash(const char *word)
 {
     // Returns hashcode based on the first lowercase letter in dict
-    char firstLetter = tolower(word[0]); // edge case to consider: if the first letter is an apostrophe???????!!!!!!
+    char firstLetter = tolower(word[0]); 
     int letterValue = (int) firstLetter;
     int hashCode = letterValue - 97;
 
@@ -83,7 +82,7 @@ bool load(const char *dictionary)
 
     // Loads dictionary words into memory
     char word[LENGTH + 1]; 
-    while(fscanf(f, "%s", word) != EOF)
+    while (fscanf(f, "%s", word) != EOF)
     {
         // add end terminating nul char?? is this already done?
         //word[index] = '\0';
@@ -123,7 +122,6 @@ bool load(const char *dictionary)
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
 unsigned int size(void)
 {
-    // TODO
     if (WORDS > 0)
     {
         return WORDS;
@@ -137,7 +135,6 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
-    // TODO
     if (size() != 0)
     {
         // Go through every array index
